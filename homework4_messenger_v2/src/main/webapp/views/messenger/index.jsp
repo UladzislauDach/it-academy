@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="view.Storage" %>
 <%@ page import="model.User" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>MainPage</title>
 </head>
-<body>
 <body>
 <%User currentUser = (User) session.getAttribute("user");%>
 <h4> Привет,   <%=currentUser.getName()%>

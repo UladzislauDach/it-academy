@@ -1,5 +1,6 @@
 package web.servlet;
 
+import model.User;
 import view.Storage;
 
 import javax.servlet.ServletException;
@@ -26,10 +27,10 @@ public class SignIn extends HttpServlet {
         Storage storage = Storage.getInstance();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if (storage.getUser(login, password) != null){
+        User user = storage.getUser(login, password);
+        if (user != null){
             HttpSession session = req.getSession();
-            session.setAttribute("login", login);
-            session.setAttribute("password", password);
+            session.setAttribute("user", user);
             resp.sendRedirect("/app/messenger");
         } else {
             req.setAttribute("info", "Неверный логин или пароль");

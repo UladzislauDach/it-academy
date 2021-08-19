@@ -28,10 +28,10 @@ public class SignUp extends HttpServlet {
             req.setAttribute("info", "Логин уже занят");
             req.getRequestDispatcher("/views/messenger/signUp.jsp").forward(req, resp);
         } else {
-            storage.addUser(new User(login, password, req.getParameter("name"), req.getParameter("birth")));
+            User user = new User(login, password, req.getParameter("name"), req.getParameter("birth"));
+            storage.addUser(user);
             HttpSession session = req.getSession();
-            session.setAttribute("login", login);
-            session.setAttribute("password", password);
+            session.setAttribute("user", user);
             resp.sendRedirect("/app/messenger");
         }
     }
