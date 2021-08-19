@@ -20,7 +20,8 @@ public class SecurityFilter implements Filter {
         String contextPath = req.getContextPath();
 
         HttpSession session = req.getSession();
-        if (session != null && session.getAttribute("login") != null) {
+        if (session != null && session.getAttribute("login" ) != null
+                && session.getAttribute("password" ) != null) {
             chain.doFilter(request, response);
         } else
             res.sendRedirect(contextPath + "/messenger/signIn");
