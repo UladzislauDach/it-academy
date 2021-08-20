@@ -1,39 +1,31 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Message {
-    private User to;
-    private User from;
-    private String sendAt;
+    private String from;
+    private LocalDateTime sendAt;
     private String text;
 
-    public Message(User to, User from, String sendAt, String text) {
-        this.to = to;
+    public Message(String from, LocalDateTime sendAt, String text) {
         this.from = from;
         this.sendAt = sendAt;
         this.text = text;
     }
 
-    public User getTo() {
-        return to;
-    }
-
-    public void setTo(User to) {
-        this.to = to;
-    }
-
-    public User getFrom() {
+    public String getFrom() {
         return from;
     }
 
-    public void setFrom(User from) {
+    public void setFrom(String from) {
         this.from = from;
     }
 
-    public String getSendAt() {
+    public LocalDateTime getSendAt() {
         return sendAt;
     }
 
-    public void setSendAt(String sendAt) {
+    public void setSendAt(LocalDateTime sendAt) {
         this.sendAt = sendAt;
     }
 

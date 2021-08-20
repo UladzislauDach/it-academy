@@ -1,7 +1,8 @@
 package web.servlet;
 
 import model.User;
-import view.Storage;
+import view.UserService;
+import storage.UserStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,13 +24,13 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        Storage storage = Storage.getInstance();
-        if (storage.existUserLogin(login)) {
+        UserService userService = UserService.getInstance();
+        if (userService.existByLogin(login)) {
             req.setAttribute("info", "Логин уже занят");
             req.getRequestDispatcher("/views/messenger/signUp.jsp").forward(req, resp);
         } else {
             User user = new User(login, password, req.getParameter("name"), req.getParameter("birth"));
-            storage.addUser(user);
+            userService.add(user);
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             resp.sendRedirect("/app/messenger");

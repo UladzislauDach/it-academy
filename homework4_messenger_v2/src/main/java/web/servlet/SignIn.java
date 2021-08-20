@@ -1,7 +1,7 @@
 package web.servlet;
 
 import model.User;
-import view.Storage;
+import view.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,17 +24,17 @@ public class SignIn extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Storage storage = Storage.getInstance();
+        UserService userService = UserService.getInstance();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        User user = storage.getUser(login, password);
-        if (user != null){
+        User user = userService.getByLoginAndPassword(login, password);
+        if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             resp.sendRedirect("/app/messenger");
         } else {
             req.setAttribute("info", "Неверный логин или пароль");
-            req.getRequestDispatcher("/views/messenger/signIn.jsp").forward(req,resp);
+            req.getRequestDispatcher("/views/messenger/signIn.jsp").forward(req, resp);
         }
     }
 }

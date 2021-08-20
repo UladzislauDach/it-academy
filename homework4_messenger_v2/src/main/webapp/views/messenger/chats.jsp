@@ -1,4 +1,4 @@
-<%@ page import="view.Storage" %>
+<%@ page import="view.UserService" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="model.Message" %>
 <%@ page import="java.util.List" %>
@@ -17,7 +17,7 @@
     </tr>
     <c:forEach var="message" items="${listMessage}">
         <tr>
-            <td>${message.getFrom().getLogin()}</td>
+            <td>${message.getFrom()}</td>
             <td>${message.getSendAt()}</td>
             <td>${message.getText()}</td>
         </tr>

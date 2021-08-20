@@ -2,7 +2,8 @@ package web.servlet;
 
 import model.Message;
 import model.User;
-import view.Storage;
+import view.MessageService;
+import view.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +17,9 @@ import java.util.List;
 public class Chats extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Storage storage = Storage.getInstance();
+        MessageService messageService = MessageService.getInstance();
         User currentUser = (User) req.getSession().getAttribute("user");
-        List<Message> listMessage = storage.getMessageList(currentUser.getLogin());
+        List<Message> listMessage = messageService.getMessageList(currentUser.getLogin());
         req.setAttribute("listMessage", listMessage);
         req.getRequestDispatcher("/views/messenger/chats.jsp").forward(req, resp);
     }
