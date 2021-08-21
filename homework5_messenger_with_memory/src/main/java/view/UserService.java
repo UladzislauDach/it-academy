@@ -1,8 +1,9 @@
 package view;
 
 import model.User;
+import storage.FileUserStorage;
 import storage.IUserStorage;
-import storage.UserStorage;
+import storage.RamUserStorage;
 
 public class UserService {
     private static final UserService instance = new UserService();
@@ -14,8 +15,8 @@ public class UserService {
     }
 
     private UserService() {
-        this.userStorage = UserStorage.getInstance();
-    }
+        this.userStorage = FileUserStorage.getInstance();
+    } //todo
 
     public User getByLoginAndPassword(String login, String password) {
         return userStorage.getByLoginAndPassword(login, password);

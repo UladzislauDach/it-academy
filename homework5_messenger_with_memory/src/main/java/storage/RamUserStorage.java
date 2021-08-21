@@ -6,15 +6,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserStorage implements IUserStorage {
+public class RamUserStorage implements IUserStorage {
 
-    private static final UserStorage instance = new UserStorage();
+    private static final RamUserStorage instance = new RamUserStorage();
     private final Map<String, User> userMap = new HashMap<>();
 
-    private UserStorage() {
+    private RamUserStorage() {
     }
 
-    public static UserStorage getInstance() {
+    public static RamUserStorage getInstance() {
         return instance;
     }
 

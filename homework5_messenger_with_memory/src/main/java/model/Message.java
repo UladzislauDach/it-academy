@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Message {
+public class Message implements Serializable {
     private String from;
     private LocalDateTime sendAt;
     private String text;

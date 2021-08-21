@@ -2,7 +2,6 @@ package web.servlet;
 
 import model.User;
 import view.UserService;
-import storage.UserStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

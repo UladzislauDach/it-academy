@@ -1,9 +1,9 @@
 package view;
 
 import model.Message;
-import model.User;
+import storage.FileMessageStorage;
 import storage.IMessageStorage;
-import storage.MessageStorage;
+import storage.RamMessageStorage;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class MessageService {
     private final IMessageStorage messageStorage;
 
     private MessageService() {
-        this.messageStorage = MessageStorage.getInstance();
-    }
+        this.messageStorage = FileMessageStorage.getInstance();
+    } //todo
 
     public static MessageService getInstance() {
         return messageService;
