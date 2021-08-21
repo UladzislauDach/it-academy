@@ -17,8 +17,6 @@ import java.time.LocalDateTime;
 public class MessageSender extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("error", "");
-        req.setAttribute("success", "");
         req.getRequestDispatcher("/views/messenger/message.jsp").forward(req, resp);
     }
 
@@ -32,11 +30,10 @@ public class MessageSender extends HttpServlet {
             MessageService messageService = MessageService.getInstance();
             Message message = new Message(currentUser.getLogin(), LocalDateTime.now(), text);
             messageService.add(to, message);
-            req.setAttribute("success", "Успешно отправлено");
-            req.setAttribute("error", "");
+            req.setAttribute("msg", "Успешно отправлено");
         } else {
-            req.setAttribute("success", "");
-            req.setAttribute("error", "Ошибка отправки. Такого пользователя не существует.");
+            req.setAttribute("error", true);
+            req.setAttribute("msg", "Ошибка отправки. Такого пользователя не существует.");
         }
         req.getRequestDispatcher("/views/messenger/message.jsp").forward(req, resp);
     }

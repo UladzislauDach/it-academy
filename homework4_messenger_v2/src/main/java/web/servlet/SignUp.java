@@ -26,7 +26,8 @@ public class SignUp extends HttpServlet {
         String password = req.getParameter("password");
         UserService userService = UserService.getInstance();
         if (userService.existByLogin(login)) {
-            req.setAttribute("info", "Логин уже занят");
+            req.setAttribute("msg", "Логин уже занят");
+            req.setAttribute("error", true);
             req.getRequestDispatcher("/views/messenger/signUp.jsp").forward(req, resp);
         } else {
             User user = new User(login, password, req.getParameter("name"), req.getParameter("birth"));

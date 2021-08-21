@@ -1,10 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>signUp</title>
 </head>
 <body>
-<p style="color: red"><%=(String) request.getAttribute("info")%>
+<c:choose>
+    <c:when test="${requestScope.error}">
+        <p style="color:red;">${requestScope.msg}</p>
+    </c:when>
+</c:choose>
 </p>
 <form action="signUp" method="post">
     <p><b>Заполните данные для регистрации</b></p>

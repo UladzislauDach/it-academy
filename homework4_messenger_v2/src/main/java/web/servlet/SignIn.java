@@ -33,7 +33,8 @@ public class SignIn extends HttpServlet {
             session.setAttribute("user", user);
             resp.sendRedirect("/app/messenger");
         } else {
-            req.setAttribute("info", "Неверный логин или пароль");
+            req.setAttribute("msg", "Неверный логин или пароль");
+            req.setAttribute("error", true);
             req.getRequestDispatcher("/views/messenger/signIn.jsp").forward(req, resp);
         }
     }
