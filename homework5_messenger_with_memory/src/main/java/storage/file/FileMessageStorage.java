@@ -1,6 +1,7 @@
-package storage;
+package storage.file;
 
 import model.Message;
+import storage.IMessageStorage;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,11 +15,11 @@ public class FileMessageStorage implements IMessageStorage {
     Map<String, List<Message>> messageMap = new HashMap<>(); // почему бы в качестве ключа не использовать User
 
     private FileMessageStorage() {
-        writeMessageMap();
+        writeMessageMap(); // Записываем пустой файл
     }
 
     private void writeMessageMap() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("message.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("message.bin"))) {
             oos.writeObject(messageMap);
         } catch (IOException e) {
             e.printStackTrace(); //todo сделать обработку
@@ -26,7 +27,7 @@ public class FileMessageStorage implements IMessageStorage {
     }
 
     private void readMessageMap() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("message.dat"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("message.bin"))) {
             messageMap = (Map<String, List<Message>>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace(); //todo сделать обработку

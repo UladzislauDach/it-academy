@@ -4,4 +4,8 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>MyFirstServlet</display-name>
+    <context-param>
+        <param-name>storage_type</param-name>
+        <param-value>disk</param-value>
+    </context-param>
 </web-app>

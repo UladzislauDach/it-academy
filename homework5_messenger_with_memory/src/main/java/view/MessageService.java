@@ -1,9 +1,9 @@
 package view;
 
 import model.Message;
-import storage.FileMessageStorage;
+import storage.EStorageType;
+import storage.file.FileMessageStorage;
 import storage.IMessageStorage;
-import storage.RamMessageStorage;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class MessageService {
     private final IMessageStorage messageStorage;
 
     private MessageService() {
-        this.messageStorage = FileMessageStorage.getInstance();
-    } //todo
+        this.messageStorage = EStorageType.valueOfIgnoreCase("disc").getMessageStorageType();
+    }
 
     public static MessageService getInstance() {
         return messageService;

@@ -1,6 +1,7 @@
-package storage;
+package storage.file;
 
 import model.User;
+import storage.IUserStorage;
 
 import java.io.*;
 import java.util.HashMap;
@@ -22,15 +23,16 @@ public class FileUserStorage implements IUserStorage {
     private Map<String, User> userMap = new HashMap<>();
 
     private void writeUserMap() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("user.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("user.bin"))) {
             oos.writeObject(userMap);
         } catch (IOException e) {
             e.printStackTrace(); //todo сделать норм обработку
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void readUserMap() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("user.dat"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("user.bin"))) {
             userMap = (Map<String, User>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace(); //todo сделать норм обработку

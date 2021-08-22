@@ -1,6 +1,7 @@
-package storage;
+package storage.ram;
 
 import model.User;
+import storage.IUserStorage;
 
 import java.util.HashMap;
 import java.util.List;
