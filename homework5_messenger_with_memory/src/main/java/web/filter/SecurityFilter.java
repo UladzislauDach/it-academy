@@ -1,4 +1,4 @@
-package web.filters;
+package web.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -23,7 +23,7 @@ public class SecurityFilter implements Filter {
         if (session != null && session.getAttribute("user" ) != null) {
             chain.doFilter(request, response);
         } else
-            res.sendRedirect(contextPath + "/messenger/signIn");
+            res.sendRedirect(contextPath + "/messenger");
     }
 
     @Override

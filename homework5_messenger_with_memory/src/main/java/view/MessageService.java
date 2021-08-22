@@ -13,7 +13,7 @@ public class MessageService {
     private final IMessageStorage messageStorage;
 
     private MessageService() {
-        this.messageStorage = EStorageType.valueOfIgnoreCase("disc").getMessageStorageType();
+        this.messageStorage = EStorageType.valueOfIgnoreCase("disk").getMessageStorageType();
     }
 
     public static MessageService getInstance() {

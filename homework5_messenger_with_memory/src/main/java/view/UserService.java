@@ -15,7 +15,7 @@ public class UserService {
     }
 
     private UserService() {
-        this.userStorage = EStorageType.valueOfIgnoreCase("ram").getUserStorageType();
+        this.userStorage = EStorageType.valueOfIgnoreCase("disk").getUserStorageType();
     }
 
     public User getByLoginAndPassword(String login, String password) {
