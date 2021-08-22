@@ -11,8 +11,7 @@ import java.util.Map;
 public class RamMessageStorage implements IMessageStorage {
     private static final RamMessageStorage messageStorage = new RamMessageStorage();
 
-    Map<String , List<Message>> messageMap = new HashMap<>(); // почему бы в качестве ключа не использовать User
-
+    Map<String , List<Message>> messageMap = new HashMap<>();
     private RamMessageStorage() {
     }
 

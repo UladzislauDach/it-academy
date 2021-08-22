@@ -1,5 +1,7 @@
 package web.servlet;
 
+import storage.CurrentStorageType;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

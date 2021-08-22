@@ -1,6 +1,7 @@
 package view;
 
 import model.User;
+import storage.CurrentStorageType;
 import storage.EStorageType;
 import storage.file.FileUserStorage;
 import storage.IUserStorage;
@@ -15,7 +16,9 @@ public class UserService {
     }
 
     private UserService() {
-        this.userStorage = EStorageType.valueOfIgnoreCase("disk").getUserStorageType();
+        CurrentStorageType currentStorageType = CurrentStorageType.getInstance();
+        EStorageType userStorageType = EStorageType.valueOfIgnoreCase(currentStorageType.getStorageType());
+        this.userStorage = userStorageType.getUserStorageType();
     }
 
     public User getByLoginAndPassword(String login, String password) {

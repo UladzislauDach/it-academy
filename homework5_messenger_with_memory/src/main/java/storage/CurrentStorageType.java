@@ -1,7 +1,7 @@
 package storage;
 
 public class CurrentStorageType {
-    public static CurrentStorageType instance;
+    private static CurrentStorageType instance;
 
     private String storageType;
 

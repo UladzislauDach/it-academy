@@ -1,6 +1,7 @@
 package view;
 
 import model.Message;
+import storage.CurrentStorageType;
 import storage.EStorageType;
 import storage.file.FileMessageStorage;
 import storage.IMessageStorage;
@@ -13,7 +14,9 @@ public class MessageService {
     private final IMessageStorage messageStorage;
 
     private MessageService() {
-        this.messageStorage = EStorageType.valueOfIgnoreCase("disk").getMessageStorageType();
+        CurrentStorageType currentStorageType = CurrentStorageType.getInstance();
+        EStorageType messageStorageType = EStorageType.valueOfIgnoreCase(currentStorageType.getStorageType());
+        this.messageStorage = messageStorageType.getMessageStorageType();
     }
 
     public static MessageService getInstance() {

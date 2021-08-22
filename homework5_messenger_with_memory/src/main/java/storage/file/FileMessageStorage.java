@@ -26,6 +26,7 @@ public class FileMessageStorage implements IMessageStorage {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void readMessageMap() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("message.bin"))) {
             messageMap = (Map<String, List<Message>>) ois.readObject();

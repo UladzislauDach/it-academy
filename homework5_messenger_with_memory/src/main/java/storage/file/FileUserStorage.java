@@ -17,7 +17,7 @@ public class FileUserStorage implements IUserStorage {
     }
 
     private FileUserStorage() {
-        writeUserMap();
+        writeUserMap(); //записываем пустой файл
     }
 
     private Map<String, User> userMap = new HashMap<>();
