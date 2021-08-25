@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/messenger/chats", "/messenger/message"})
+@WebFilter(urlPatterns = {"/messenger/chats", "/messenger/message","/messenger/about", "/messenger/users"})
 public class SecurityFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
