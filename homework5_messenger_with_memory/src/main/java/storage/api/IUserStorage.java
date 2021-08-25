@@ -1,4 +1,4 @@
-package storage;
+package storage.api;
 
 import model.User;
 

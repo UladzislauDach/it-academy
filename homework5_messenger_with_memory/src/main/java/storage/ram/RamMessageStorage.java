@@ -1,7 +1,7 @@
 package storage.ram;
 
 import model.Message;
-import storage.IMessageStorage;
+import storage.api.IMessageStorage;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -3,7 +3,7 @@ package view;
 import model.Message;
 import storage.AppParam;
 import storage.EStorageType;
-import storage.IMessageStorage;
+import storage.api.IMessageStorage;
 
 import java.util.List;
 

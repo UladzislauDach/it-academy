@@ -1,7 +1,7 @@
 package storage.file;
 
 import model.Message;
-import storage.IMessageStorage;
+import storage.api.IMessageStorage;
 
 import java.io.*;
 import java.util.ArrayList;

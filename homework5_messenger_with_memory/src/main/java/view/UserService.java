@@ -3,7 +3,7 @@ package view;
 import model.User;
 import storage.AppParam;
 import storage.EStorageType;
-import storage.IUserStorage;
+import storage.api.IUserStorage;
 
 import java.util.ArrayList;
 import java.util.List;

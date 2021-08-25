@@ -1,5 +1,7 @@
 package storage;
 
+import storage.api.IMessageStorage;
+import storage.api.IUserStorage;
 import storage.file.FileMessageStorage;
 import storage.file.FileUserStorage;
 import storage.ram.RamMessageStorage;
