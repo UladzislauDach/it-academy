@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class FileMessageStorage implements IMessageStorage {
     private static final FileMessageStorage messageStorage = new FileMessageStorage();
+    private static final String FILE_NAME = "messages.bin";
 
     Map<String, List<Message>> messageMap = new HashMap<>(); // почему бы в качестве ключа не использовать User
 
@@ -18,25 +19,24 @@ public class FileMessageStorage implements IMessageStorage {
         writeMessageMap(); // Записываем пустой файл
     }
 
-    private void writeMessageMap() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("message.bin"))) {
-            oos.writeObject(messageMap);
-        } catch (IOException e) {
-            e.printStackTrace(); //todo сделать обработку
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private void readMessageMap() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("message.bin"))) {
-            messageMap = (Map<String, List<Message>>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace(); //todo сделать обработку
-        }
-    }
-
     public static FileMessageStorage getInstance() {
         return messageStorage;
+    }
+
+    private void writeMessageMap() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            oos.writeObject(messageMap);
+        } catch (IOException e) {
+            e.printStackTrace(); //todo как лучше обработать?
+        }
+    }
+
+    private void readMessageMap() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
+            messageMap = (Map<String, List<Message>>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace(); //todo как лучше обработать?
+        }
     }
 
     public void add(String to, Message message) {

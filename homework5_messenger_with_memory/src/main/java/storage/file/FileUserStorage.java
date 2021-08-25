@@ -5,12 +5,12 @@ import storage.IUserStorage;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FileUserStorage implements IUserStorage {
 
-    public static FileUserStorage fileUserStorage = new FileUserStorage();
+    private static final FileUserStorage fileUserStorage = new FileUserStorage();
+    private static final String FILE_NAME = "users.bin";
 
     public static FileUserStorage getInstance() {
         return fileUserStorage;
@@ -23,19 +23,19 @@ public class FileUserStorage implements IUserStorage {
     private Map<String, User> userMap = new HashMap<>();
 
     private void writeUserMap() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("user.bin"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(userMap);
         } catch (IOException e) {
-            e.printStackTrace(); //todo сделать норм обработку
+            e.printStackTrace(); //todo как лучше обработать?
         }
     }
 
-    @SuppressWarnings("unchecked")
+
     private void readUserMap() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("user.bin"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             userMap = (Map<String, User>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace(); //todo сделать норм обработку
+            e.printStackTrace(); //todo как лучше обработать?
         }
     }
 
@@ -57,28 +57,7 @@ public class FileUserStorage implements IUserStorage {
     }
 
     @Override
-    public List<User> getAll() {
-        readUserMap();
-        return (List<User>) userMap.values();
-    }
-
-    @Override
-    public boolean existByLogin(String login) {
-        readUserMap();
-        return userMap.containsKey(login);
-    }
-
-    @Override
-    public User getByLoginAndPassword(String login, String password) {
-        readUserMap();
-        if (!userMap.containsKey(login)) {
-            return null;
-        }
-        User user = userMap.get(login);
-        if (user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
-        }
+    public Map<String, User> getAll() {
+        return userMap;
     }
 }

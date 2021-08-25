@@ -4,7 +4,6 @@ import model.User;
 import storage.IUserStorage;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RamUserStorage implements IUserStorage {
@@ -25,28 +24,10 @@ public class RamUserStorage implements IUserStorage {
     }
 
     @Override
-    public List<User> getAll() {
-        return (List<User>) userMap.values();
+    public Map<String, User> getAll() {
+        return userMap;
     }
 
-    @Override
-    public boolean existByLogin(String login) {
-        return userMap.containsKey(login);
-    }
-
-    @Override
-    public User getByLoginAndPassword(String login, String password) {
-        if (!userMap.containsKey(login)) {
-            return null;
-        }
-        User user = userMap.get(login);
-        if (user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
-        }
-
-    }
 
     @Override
     public boolean add(User user) {

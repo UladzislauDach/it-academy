@@ -2,7 +2,7 @@ package storage;
 
 import model.User;
 
-import java.util.List;
+import java.util.Map;
 
 public interface IUserStorage {
 
@@ -10,9 +10,5 @@ public interface IUserStorage {
 
     boolean add(User user);
 
-    List<User> getAll();
-
-    boolean existByLogin(String login);
-
-    User getByLoginAndPassword(String login, String password);
+    Map<String, User> getAll();
 }

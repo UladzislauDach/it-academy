@@ -9,15 +9,17 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public enum EStorageType {
-    DISK(FileMessageStorage.getInstance(), FileUserStorage.getInstance()),
-    RAM(RamMessageStorage.getInstance(), RamUserStorage.getInstance());
+    DISK(FileMessageStorage.getInstance(), FileUserStorage.getInstance(), "жесткий диск"),
+    RAM(RamMessageStorage.getInstance(), RamUserStorage.getInstance(), "оперативная память");
 
     IMessageStorage iMessageStorage;
     IUserStorage iUserStorage;
+    String name;
 
-    EStorageType(IMessageStorage iMessageStorage, IUserStorage iUserStorage) {
+    EStorageType(IMessageStorage iMessageStorage, IUserStorage iUserStorage, String name) {
         this.iMessageStorage = iMessageStorage;
         this.iUserStorage = iUserStorage;
+        this.name = name;
     }
 
     public IMessageStorage getMessageStorageType() {
@@ -26,6 +28,10 @@ public enum EStorageType {
 
     public IUserStorage getUserStorageType() {
         return this.iUserStorage;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static EStorageType valueOfIgnoreCase(String storageType) {

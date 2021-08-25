@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet(name = "Registration", urlPatterns = "/messenger/signUp")
 public class SignUp extends HttpServlet {
@@ -29,7 +30,8 @@ public class SignUp extends HttpServlet {
             req.setAttribute("error", true);
             req.getRequestDispatcher("/views/messenger/signUp.jsp").forward(req, resp);
         } else {
-            User user = new User(login, password, req.getParameter("name"), req.getParameter("birth"));
+            User user = new User(login, password, req.getParameter("name"),
+                    req.getParameter("birth"), LocalDateTime.now());
             userService.add(user);
             HttpSession session = req.getSession();
             session.setAttribute("user", user);

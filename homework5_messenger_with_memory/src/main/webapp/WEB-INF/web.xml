@@ -6,6 +6,6 @@
     <display-name>MyFirstServlet</display-name>
     <context-param>
         <param-name>storage_type</param-name>
-        <param-value>disk</param-value>
+        <param-value>ram</param-value>
     </context-param>
 </web-app>

@@ -27,6 +27,10 @@
 <c:choose>
     <c:when test="${sessionScope.user!=null}">
 
+        <form action="messenger/users">
+            <button>Пользователи</button>
+        </form>
+        </br>
         <form action="messenger/chats">
             <button>Мои сообщения</button>
         </form>
@@ -37,6 +41,10 @@
         </br>
         <form action="messenger/signOut" method="post">
             <button>Выйти из аккаунта</button>
+        </form>
+        </br>
+        <form action="messenger/about">
+            <button>О приложении</button>
         </form>
     </c:when>
     <c:otherwise>

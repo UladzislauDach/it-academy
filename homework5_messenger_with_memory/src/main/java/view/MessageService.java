@@ -1,9 +1,8 @@
 package view;
 
 import model.Message;
-import storage.CurrentStorageType;
+import storage.AppParam;
 import storage.EStorageType;
-import storage.file.FileMessageStorage;
 import storage.IMessageStorage;
 
 import java.util.List;
@@ -14,8 +13,8 @@ public class MessageService {
     private final IMessageStorage messageStorage;
 
     private MessageService() {
-        CurrentStorageType currentStorageType = CurrentStorageType.getInstance();
-        EStorageType messageStorageType = EStorageType.valueOfIgnoreCase(currentStorageType.getStorageType());
+        AppParam appParam = AppParam.getInstance();
+        EStorageType messageStorageType = appParam.getStorageType();
         this.messageStorage = messageStorageType.getMessageStorageType();
     }
 

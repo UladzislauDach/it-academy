@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class User implements Serializable {
     private static final long serialVersionUID = -9068154429397087780L;
@@ -8,14 +10,15 @@ public class User implements Serializable {
     private String password;
     private String name;
     private String birthDate;
+    private LocalDateTime registrationDate;
 
-    public User(String login, String password, String name, String birthDate) {
+    public User(String login, String password, String name, String birthDate, LocalDateTime registrationDate) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.birthDate = birthDate;
+        this.registrationDate = registrationDate;
     }
-    double a = Math.PI;
 
     public String getLogin() {
         return login;
@@ -49,4 +52,15 @@ public class User implements Serializable {
         this.birthDate = birthDate;
     }
 
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public String getRegistrationDateAsString(){
+        return registrationDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm-ss"));
+    }
 }

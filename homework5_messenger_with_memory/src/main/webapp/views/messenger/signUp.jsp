@@ -27,7 +27,7 @@
     </p>
     <p>
         <label for="birth">birth: </label>
-        <input id="birth" type="text" name="birth">
+        <input id="birth" type="date" name="birth">
     </p>
     <p><input type="reset" value="Очистить"></p>
     <p><input type="submit" value="Зарегистрироваться"></p>
