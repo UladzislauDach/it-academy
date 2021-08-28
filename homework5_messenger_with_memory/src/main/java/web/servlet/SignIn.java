@@ -22,18 +22,19 @@ public class SignIn extends HttpServlet {
         req.getRequestDispatcher("/views/messenger/signIn.jsp").forward(req, resp);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = UserService.getInstance();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        User user = userService.getByLoginAndPassword(login, password);
-        if (user != null) {
+        try {
+            User user = userService.getByLoginAndPassword(login, password);
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             resp.sendRedirect("/app/messenger");
-        } else {
-            req.setAttribute("msg", "Неверный логин или пароль");
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("msg", e.getMessage());
             req.setAttribute("error", true);
             req.getRequestDispatcher("/views/messenger/signIn.jsp").forward(req, resp);
         }

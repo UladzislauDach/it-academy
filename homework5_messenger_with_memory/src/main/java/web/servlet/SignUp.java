@@ -24,18 +24,22 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+        String name = req.getParameter("name");
+        String birth = req.getParameter("birth");
         UserService userService = UserService.getInstance();
-        if (userService.existByLogin(login)) {
-            req.setAttribute("msg", "Логин уже занят");
+        User currentUser = new User(login, password, name, birth, LocalDateTime.now());
+        try {
+            userService.validateUserForSingUp(currentUser);
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("msg", e.getMessage());
             req.setAttribute("error", true);
             req.getRequestDispatcher("/views/messenger/signUp.jsp").forward(req, resp);
-        } else {
-            User user = new User(login, password, req.getParameter("name"),
-                    req.getParameter("birth"), LocalDateTime.now());
-            userService.add(user);
-            HttpSession session = req.getSession();
-            session.setAttribute("user", user);
-            resp.sendRedirect("/app/messenger");
+            return; // очень важная строка
         }
+        userService.add(currentUser);
+        HttpSession session = req.getSession();
+        session.setAttribute("user", currentUser);
+        resp.sendRedirect("/app/messenger");
     }
 }
+

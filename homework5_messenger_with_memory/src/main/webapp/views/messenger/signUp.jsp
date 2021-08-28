@@ -10,23 +10,23 @@
         <p style="color:red;">${requestScope.msg}</p>
     </c:when>
 </c:choose>
-</p>
+
 <form action="signUp" method="post">
     <p><b>Заполните данные для регистрации</b></p>
     <p>
-        <label for="login">login: </label>
+        <label for="login">Логин: </label>
         <input id="login" type="text" name="login">
     </p>
     <p>
-        <label for="password">password: </label>
+        <label for="password">Пароль: </label>
         <input id="password" type="password" name="password">
     </p>
     <p>
-        <label for="name">name: </label>
+        <label for="name">ФИО: </label>
         <input id="name" type="text" name="name">
     </p>
     <p>
-        <label for="birth">birth: </label>
+        <label for="birth">День рождения: </label>
         <input id="birth" type="date" name="birth">
     </p>
     <p><input type="reset" value="Очистить"></p>

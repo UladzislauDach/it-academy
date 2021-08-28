@@ -27,15 +27,48 @@ public class UserService {
     public User getByLoginAndPassword(String login, String password) {
         Map<String, User> userMap = userStorage.getAll();
         if (!userMap.containsKey(login)) {
-            return null;
+            throw new IllegalArgumentException("Неправильный логин или пароль");
         }
         User user = userMap.get(login);
         if (user.getPassword().equals(password)) {
             return user;
         } else {
-            return null;
+            throw new IllegalArgumentException("Неправильный логин или пароль");
         }
     }
+
+    public void validateUserForSingUp(User user) {
+        if (existByLogin(user.getLogin())) {
+            throw new IllegalArgumentException("Логин уже занят");
+        }
+        validationUserFields(user);
+
+
+    }
+
+    private void validationUserFields(User user) {
+        String errorMsg = "";
+        if (nullOrEmpty(user.getLogin())) {
+            errorMsg += "Поле логин не заполнено ";
+        }
+        if (nullOrEmpty(user.getPassword())) {
+            errorMsg += "Поле пароль не заполнено ";
+        }
+        if (nullOrEmpty(user.getBirthDate())) {
+            errorMsg += "Поле день рождения не заполнено ";
+        }
+        if (nullOrEmpty(user.getName())) {
+            errorMsg += "Поле ФИО не заполнено ";
+        }
+        if (!errorMsg.isEmpty()) {
+            throw new IllegalArgumentException(errorMsg);
+        }
+    }
+
+    private boolean nullOrEmpty(String str) {
+        return str == null || str.isEmpty();
+    }
+
 
     public boolean existByLogin(String login) {
         return userStorage.getAll().containsKey(login);
