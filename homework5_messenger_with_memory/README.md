@@ -1,4 +1,5 @@
 This third version messenger. With a choice storage type: RAM or DISK (write file).
+
 Task:
 1. Сохранять данные о зарегистрированных пользователях в файле 
 2. Сохранять данные о сообщениях в файле 
