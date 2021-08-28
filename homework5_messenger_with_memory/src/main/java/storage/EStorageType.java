@@ -36,7 +36,8 @@ public enum EStorageType {
         return name;
     }
 
-    public static EStorageType valueOfIgnoreCase(String storageType) {
+    public static EStorageType
+    valueOfIgnoreCase(String storageType) {
         return Arrays.stream(values()).filter(eStorageType -> eStorageType.name()
                 .equalsIgnoreCase(storageType)).findFirst().orElseThrow(NoSuchElementException::new);
     }
